@@ -13,3 +13,10 @@ function twenty_child_enqueue_styles() {
         $theme->get('Version') // this only works if you have Version in the style header
     );
 }
+add_filter( 'show_admin_bar' , 'twenty_child_is_show_admin_bar');
+function twenty_child_is_show_admin_bar($show_admin_bar) {
+    $user =wp_get_current_user();
+    $user_name =$user->user_login;
+    $show_admin_bar =($user_name=="wp-test")?   false : $show_admin_bar;
+    return $show_admin_bar;
+}
