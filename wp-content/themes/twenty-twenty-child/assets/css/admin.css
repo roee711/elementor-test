@@ -1,0 +1,19 @@
+.form-fields div{
+    margin: 15px 0px;
+
+}
+.form-fields div input[type='text'],
+.form-fields div input[type='url']
+{
+    width: 100%;
+}
+
+.form-fields label{
+    font-weight: bold;
+}
+.form-fields img{
+    max-width: 30%;
+}
+.twenty_child_remove_image_button{
+    display: block;
+}

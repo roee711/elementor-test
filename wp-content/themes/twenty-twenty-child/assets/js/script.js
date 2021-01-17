@@ -17,7 +17,7 @@ jQuery(document).ready(function ($){
                 multiple: false // for multiple image selection set to true
             }).on('select', function() { // it also has "open" and "close" events
                 var attachment = custom_uploader.state().get('selection').first().toJSON();
-                $(button).removeClass('button').html('<img class="true_pre_image" src="' + attachment.url + '" style="max-width:95%;display:block;" />').next().val(attachment.id).next().show();
+                $(button).removeClass('button').html('<img class="true_pre_image" src="' + attachment.url + '" style="max-width:30%;display:block;" />').next().val(attachment.id).next().show();
             })
                 .open();
     });

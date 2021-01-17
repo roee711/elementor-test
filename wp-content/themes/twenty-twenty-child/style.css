@@ -12,6 +12,9 @@
 .container {
     padding: 0px 15px;
 }
+.header-navigation-wrapper{
+    display: none;
+}
 .post-inner{
     padding-top: 1rem;
 }
