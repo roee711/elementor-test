@@ -356,3 +356,46 @@ if ( ! function_exists( 'twenty_child_grid_products' ) ) {
     }
     add_action('grid_products','twenty_child_grid_products');
 }
+if ( ! function_exists( 'twenty_child_get_product_box' ) ) {
+    function twenty_child_get_product_box( $atts ) {
+        ob_start();
+        $parameters = shortcode_atts( array(
+            'product_id' => '',
+            'bg' => '',
+        ), $atts );
+
+        if(!empty($parameters['product_id']) &&!empty($parameters['bg'])):
+            $post =get_post($parameters['product_id']);
+            if($post):
+                $product_price = get_post_meta( $post->ID, 'product_price', true);
+                $img_product = wp_get_attachment_url( get_post_thumbnail_id($post->ID) ,'thumbnail');
+
+                ?>
+                <div class="product-box" style="background-color: <?php echo $parameters['bg'] ?>">
+                    <h3>
+                         <?php echo $post->post_title ?>
+                     </h3>
+                     <?php
+                        if(!empty($img_product)):?>
+
+                          <img src="<?php  echo $img_product  ?>">
+
+                        <?php
+                        endif;
+                        if($product_price):?>
+                            <div class="price">
+                                <?php
+                                    echo __("Price: ","twenty_child").  $product_price ."  &#8362";
+                                ?>
+                            </div>
+                            <?php
+                        endif;
+                            ?>
+                </div>
+            <?php
+            endif;
+        endif;
+          return ob_get_clean();
+    }
+    add_shortcode( 'twenty_child_product_box', 'twenty_child_get_product_box' );
+}
