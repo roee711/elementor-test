@@ -399,3 +399,34 @@ if ( ! function_exists( 'twenty_child_get_product_box' ) ) {
     }
     add_shortcode( 'twenty_child_product_box', 'twenty_child_get_product_box' );
 }
+if ( ! function_exists( 'twenty_child_add_meta_address_bar' ) ) {
+
+    function twenty_child_add_meta_address_bar(){
+        ?>
+        <meta name="theme-color" content="#4285f4">
+        <?php
+    }
+    add_action('wp_head','twenty_child_add_meta_address_bar');
+}
+if ( ! function_exists( 'twenty_child_override_product_box' ) ) {
+
+    function twenty_child_override_product_box($atts ){
+        $output="";
+        $parameters = shortcode_atts( array(
+            'product_id' => '',
+            'bg' => '',
+            'name_shortcode'=>''
+        ), $atts );
+
+        if($parameters['name_shortcode']!=='twenty_child_product_box'){
+            return  $output;
+        }
+        $output.=do_shortcode("[".$parameters['name_shortcode']." product_id='" .$parameters['product_id']."' bg='".$parameters['bg']."']")
+            .__('Product for computer only','twenty_child');
+        return $output;
+    }
+    add_filter( 'override_product_box','twenty_child_override_product_box');
+}
+
+
+
